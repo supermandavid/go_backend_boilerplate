@@ -4,9 +4,8 @@ import (
 	"awesomeBackend/entities"
 	"awesomeBackend/errors"
 	"awesomeBackend/response"
-	"awesomeBackend/services"
+	"awesomeBackend/services/post"
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -29,17 +28,12 @@ func NewPostController(service services.PostService) PostController {
 
 func (*controller) GetPosts(ctx *gin.Context) {
 
-	fmt.Println("I'm here")
 	posts, err := postService.FindAll()
 	if err != nil {
-		fmt.Println("hit error")
-		fmt.Println(err)
 		ctx.JSON(http.StatusInternalServerError, errors.ServiceError{"Cannot find posts"})
 		return
 	}
-	fmt.Println("finsished")
-	fmt.Println(len(posts))
-	ctx.JSON(http.StatusOK, posts)
+	ctx.JSON(http.StatusOK, response.NewHTTPResponse(true, nil, posts))
 }
 
 func (*controller) AddPost(ctx *gin.Context) {
@@ -65,5 +59,5 @@ func (*controller) AddPost(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, response.NewHTTPResponse(nil, nil, result))
+	ctx.JSON(http.StatusCreated, response.NewHTTPResponse(true, nil, result))
 }

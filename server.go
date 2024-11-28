@@ -3,19 +3,20 @@ package main
 import (
 	"awesomeBackend/controllers"
 	router "awesomeBackend/http"
-	"awesomeBackend/repositories"
+	postRepo "awesomeBackend/repositories/post"
 	"awesomeBackend/response"
-	"awesomeBackend/services"
+	carSrv "awesomeBackend/services/car"
+	postSrv "awesomeBackend/services/post"
 	"github.com/gin-gonic/gin"
 )
 
 var (
 	// post service dependencies
-	postRepository = repositories.NewFirestoreRepository()
-	postService    = services.NewPostService(postRepository)
+	postRepository = postRepo.NewSQLiteRepository()
+	postService    = postSrv.NewPostService(postRepository)
 	postController = controllers.NewPostController(postService)
 
-	carDetailsService    = services.NewCarDetailsService()
+	carDetailsService    = carSrv.NewCarDetailsService()
 	carDetailsController = controllers.NewCarDetailsController(carDetailsService)
 
 	httpRouter = router.NewGinRouter()
@@ -25,7 +26,7 @@ func main() {
 	const port string = ":8082"
 
 	httpRouter.GET("/", func(c *gin.Context) {
-		c.JSON(200, response.NewHTTPResponse("Hello there", nil, "payload"))
+		c.JSON(200, response.NewHTTPResponse(true, "payload", "done"))
 	})
 
 	httpRouter.GET("/carDetails", carDetailsController.GetCarDetails)

@@ -23,6 +23,11 @@ func (m *mockRepository) Save(post *entities.Post) (*entities.Post, error) {
 	return result.(*entities.Post), args.Error(1)
 }
 
+func (m *mockRepository) Delete(post *entities.Post) error {
+	args := m.Called()
+	return args.Error(0)
+}
+
 func TestCreate(t *testing.T) {
 
 	mockRepo := new(mockRepository)
@@ -33,6 +38,10 @@ func TestCreate(t *testing.T) {
 	testService := NewPostService(mockRepo)
 
 	result, err := testService.Create(&post)
+
+	if err != nil {
+		t.Error(err)
+	}
 
 	mockRepo.AssertExpectations(t)
 

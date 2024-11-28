@@ -20,10 +20,10 @@ var (
 type detailService struct{}
 
 func NewCarDetailsService() CarDetailsService {
-	return &service{}
+	return &detailService{}
 }
 
-func (s *service) GetDetails() entities.CarDetails {
+func (s *detailService) GetDetails() entities.CarDetails {
 	// goroutine call endpoint 1
 	go carService.FetchData()
 

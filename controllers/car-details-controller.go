@@ -1,20 +1,20 @@
 package controllers
 
 import (
-	"awesomeBackend/services"
+	c "awesomeBackend/services/car"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 var (
-	carDetailsService services.CarDetailsService
+	carDetailsService c.CarDetailsService
 )
 
 type CarDetailsController interface {
 	GetCarDetails(ctx *gin.Context)
 }
 
-func NewCarDetailsController(service services.CarDetailsService) CarDetailsController {
+func NewCarDetailsController(service c.CarDetailsService) CarDetailsController {
 	carDetailsService = service
 	return &controller{}
 }

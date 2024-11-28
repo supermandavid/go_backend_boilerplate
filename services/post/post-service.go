@@ -2,7 +2,7 @@ package services
 
 import (
 	"awesomeBackend/entities"
-	"awesomeBackend/repositories"
+	postRepo "awesomeBackend/repositories/post"
 	"errors"
 	"math/rand"
 )
@@ -16,11 +16,11 @@ type PostService interface {
 type service struct{}
 
 var (
-	repo repositories.PostRepository
+	repo postRepo.PostRepository
 )
 
 // NewPostService
-func NewPostService(postRepository repositories.PostRepository) PostService {
+func NewPostService(postRepository postRepo.PostRepository) PostService {
 	repo = postRepository
 	return &service{}
 }

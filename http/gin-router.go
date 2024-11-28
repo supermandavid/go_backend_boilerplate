@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"io"
+	"net/http"
 	"os"
 	"path/filepath"
 )
@@ -49,4 +50,8 @@ func (*ginRouter) POST(uri string, f func(*gin.Context)) {
 func (*ginRouter) Serve(port string) {
 	fmt.Printf("Listening on port %s\n", port)
 	ginDispatcher.Run(port)
+}
+
+func (*ginRouter) ServeRequest(w http.ResponseWriter, req *http.Request) {
+	ginDispatcher.ServeHTTP(w, req)
 }

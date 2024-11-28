@@ -4,9 +4,9 @@ import (
 	"awesomeBackend/entities"
 	"cloud.google.com/go/firestore"
 	"context"
-	"fmt"
 	"google.golang.org/api/iterator"
 	"log"
+	"strconv"
 )
 
 type repo struct {
@@ -32,7 +32,7 @@ func (*repo) Save(post *entities.Post) (*entities.Post, error) {
 	}
 	defer client.Close()
 
-	_, _, err = client.Collection(collectionName).Add(ctx, map[string]interface{}{
+	_, err = client.Collection(collectionName).Doc(strconv.Itoa(int(post.ID))).Set(ctx, map[string]interface{}{
 		"ID":    post.ID,
 		"Title": post.Title,
 		"Text":  post.Text,
@@ -43,6 +43,24 @@ func (*repo) Save(post *entities.Post) (*entities.Post, error) {
 	}
 
 	return post, nil
+}
+func (*repo) Delete(post *entities.Post) error {
+	ctx := context.Background()
+	client, err := firestore.NewClient(ctx, projectID)
+
+	if err != nil {
+		log.Fatalf("Failed to create a firestore Client: %v", err)
+		return err
+	}
+	defer client.Close()
+
+	_, err = client.Collection(collectionName).Doc(strconv.Itoa(int(post.ID))).Delete(ctx)
+
+	if err != nil {
+		log.Fatalf("Failed to delete post: %v", err)
+	}
+
+	return nil
 }
 
 func (*repo) FindAll() ([]entities.Post, error) {
@@ -60,14 +78,12 @@ func (*repo) FindAll() ([]entities.Post, error) {
 
 	for {
 		doc, err := iter.Next()
-		fmt.Println(doc)
 
 		if err == iterator.Done {
 			break
 		}
 
 		if err != nil {
-			fmt.Println(len(posts))
 			log.Fatalf("Failed to iterate the list of posts: %v", err)
 			return nil, err
 		}
