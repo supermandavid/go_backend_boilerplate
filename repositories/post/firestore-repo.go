@@ -1,9 +1,9 @@
 package repositories
 
 import (
-	"awesomeBackend/entities"
 	"cloud.google.com/go/firestore"
 	"context"
+	"github.com/supermandavid/go_backend_boilerplate/entities"
 	"google.golang.org/api/iterator"
 	"log"
 	"strconv"

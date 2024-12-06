@@ -1,12 +1,12 @@
 package controllers
 
 import (
-	"awesomeBackend/entities"
-	"awesomeBackend/errors"
-	"awesomeBackend/response"
-	"awesomeBackend/services/post"
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"github.com/supermandavid/go_backend_boilerplate/entities"
+	"github.com/supermandavid/go_backend_boilerplate/errors"
+	"github.com/supermandavid/go_backend_boilerplate/response"
+	"github.com/supermandavid/go_backend_boilerplate/services/post"
 	"net/http"
 )
 

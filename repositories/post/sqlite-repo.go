@@ -1,9 +1,9 @@
 package repositories
 
 import (
-	"awesomeBackend/entities"
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/supermandavid/go_backend_boilerplate/entities"
 	"log"
 	"os"
 )

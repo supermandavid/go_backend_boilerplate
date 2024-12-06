@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"awesomeBackend/entities"
+	"github.com/supermandavid/go_backend_boilerplate/entities"
 )
 
 type PostRepository interface {

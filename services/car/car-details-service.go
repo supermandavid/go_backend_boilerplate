@@ -1,8 +1,8 @@
 package services
 
 import (
-	"awesomeBackend/entities"
-	"github.com/goccy/go-json"
+	"encoding/json"
+	"github.com/supermandavid/go_backend_boilerplate/entities"
 	"net/http"
 )
 

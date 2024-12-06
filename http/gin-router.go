@@ -49,7 +49,7 @@ func (*ginRouter) POST(uri string, f func(*gin.Context)) {
 
 func (*ginRouter) Serve(port string) {
 	fmt.Printf("Listening on port %s\n", port)
-	ginDispatcher.Run(port)
+	ginDispatcher.Run(":" + port)
 }
 
 func (*ginRouter) ServeRequest(w http.ResponseWriter, req *http.Request) {

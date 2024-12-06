@@ -1,9 +1,9 @@
 package services
 
 import (
-	"awesomeBackend/entities"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+	"github.com/supermandavid/go_backend_boilerplate/entities"
 	"testing"
 )
 

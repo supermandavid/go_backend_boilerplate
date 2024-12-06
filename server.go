@@ -1,13 +1,12 @@
 package main
 
 import (
-	"awesomeBackend/controllers"
-	router "awesomeBackend/http"
-	postRepo "awesomeBackend/repositories/post"
-	"awesomeBackend/response"
-	carSrv "awesomeBackend/services/car"
-	postSrv "awesomeBackend/services/post"
-	"github.com/gin-gonic/gin"
+	"github.com/supermandavid/go_backend_boilerplate/controllers"
+	router "github.com/supermandavid/go_backend_boilerplate/http"
+	postRepo "github.com/supermandavid/go_backend_boilerplate/repositories/post"
+	carSrv "github.com/supermandavid/go_backend_boilerplate/services/car"
+	postSrv "github.com/supermandavid/go_backend_boilerplate/services/post"
+	"os"
 )
 
 var (
@@ -23,17 +22,13 @@ var (
 )
 
 func main() {
-	const port string = ":8082"
-
-	httpRouter.GET("/", func(c *gin.Context) {
-		c.JSON(200, response.NewHTTPResponse(true, "payload", "done"))
-	})
+	const port string = "8082"
 
 	httpRouter.GET("/carDetails", carDetailsController.GetCarDetails)
 
 	httpRouter.GET("/posts", postController.GetPosts)
 	httpRouter.POST("/posts", postController.AddPost)
 
-	httpRouter.Serve(port)
+	httpRouter.Serve(os.Getenv("PORT"))
 
 }

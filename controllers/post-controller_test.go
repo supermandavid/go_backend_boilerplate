@@ -1,14 +1,14 @@
 package controllers
 
 import (
-	"awesomeBackend/entities"
-	router "awesomeBackend/http"
-	repositories "awesomeBackend/repositories/post"
-	postSrv "awesomeBackend/services/post"
 	"bytes"
 	"encoding/json"
 	"fmt"
 	"github.com/stretchr/testify/assert"
+	"github.com/supermandavid/go_backend_boilerplate/entities"
+	router "github.com/supermandavid/go_backend_boilerplate/http"
+	repositories "github.com/supermandavid/go_backend_boilerplate/repositories/post"
+	postSrv "github.com/supermandavid/go_backend_boilerplate/services/post"
 	"net/http"
 	"net/http/httptest"
 	"testing"

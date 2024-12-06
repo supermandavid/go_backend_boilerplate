@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	c "awesomeBackend/services/car"
 	"github.com/gin-gonic/gin"
+	c "github.com/supermandavid/go_backend_boilerplate/services/car"
 	"net/http"
 )
 

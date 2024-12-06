@@ -1,9 +1,9 @@
 package services
 
 import (
-	"awesomeBackend/entities"
-	postRepo "awesomeBackend/repositories/post"
 	"errors"
+	"github.com/supermandavid/go_backend_boilerplate/entities"
+	postRepo "github.com/supermandavid/go_backend_boilerplate/repositories/post"
 	"math/rand"
 )
 
