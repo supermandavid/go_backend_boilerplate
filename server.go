@@ -22,7 +22,6 @@ var (
 )
 
 func main() {
-	const port string = "8082"
 
 	httpRouter.GET("/carDetails", carDetailsController.GetCarDetails)
 
